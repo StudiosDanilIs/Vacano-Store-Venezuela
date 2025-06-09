@@ -276,8 +276,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function loadContent() {
         const path = window.location.pathname;
 
-        // Renderizar para inicio.html
-        if (path.includes('/inicio.html') || path === '/') {
+        // Renderizar para index.html
+        if (path.includes('/index.html') || path === '/') {
             const featuredGrid = document.getElementById('featuredProductsGrid');
             const offersGrid = document.getElementById('offerProductsGrid');
 
