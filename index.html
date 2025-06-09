@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacano Store | Selecciona tu País</title>
+    <link rel="icon" href="imagenes/logo.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Definición de variables CSS para los colores */
+        :root {
+            --color-primary-dark: #0a2463;
+            /* Azul oscuro más intenso */
+            --color-primary-light: #3e92cc;
+            /* Azul claro vibrante */
+            --color-secondary-dark: #1e3a8a;
+            /* Azul marino */
+            --color-secondary-light: #5e7ce2;
+            /* Azul eléctrico */
+            --color-accent: #00b4d8;
+            /* Azul turquesa para acentos */
+            --color-text-dark: #1f2937;
+            /* Gris oscuro para texto principal */
+            --color-text-light: #f8f9fa;
+            /* Blanco roto para texto claro */
+            --color-bg-light: #f9fafb;
+            /* Fondo muy claro */
+            --color-bg-white: #ffffff;
+            /* Blanco puro */
+            --color-shadow: rgba(0, 0, 0, 0.15);
+            --color-border: #e5e7eb;
+            --color-button-hover: #e0f2fe;
+            /* Azul muy suave para hover */
+
+            /* Nuevas variables para el degradado del fondo */
+            --gradient-start: #03045e;
+            --gradient-mid: #023e8a;
+            --gradient-end: #0077b6;
+            --gradient-accent: #00b4d8;
+        }
+
+        /* Estilos generales */
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            /* Fondo animado con múltiples capas */
+            background: linear-gradient(-45deg,
+                    var(--gradient-start),
+                    var(--gradient-mid),
+                    var(--gradient-end),
+                    var(--gradient-accent));
+            background-size: 400% 400%;
+            animation: gradientAnimation 12s ease infinite;
+            color: var(--color-text-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Efecto de partículas/burbujas para el fondo */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animación para el degradado del fondo */
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* --- Estilos del Preloader --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-secondary-dark));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.7s ease-out;
+            color: white;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        .spinner {
+            border: 8px solid rgba(255, 255, 255, 0.3);
+            border-top: 8px solid var(--color-accent);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            margin-bottom: 25px;
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.3);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loading-text {
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        #loading-region {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #loading-icon-display {
+            font-size: 1.5em;
+            margin-left: 10px;
+            line-height: 1;
+        }
+
+        /* --- Estilos del Contenido Principal --- */
+        .container {
+            max-width: 700px;
+            padding: 60px;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 1s ease-out forwards;
+            border: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Efecto de borde luminoso */
+        .container::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg,
+                    var(--color-accent),
+                    var(--color-primary-light),
+                    var(--color-secondary-light));
+            z-index: -1;
+            border-radius: 18px;
+            animation: borderGlow 3s linear infinite;
+            opacity: 0.7;
+            filter: blur(5px);
+        }
+
+        @keyframes borderGlow {
+            0% {
+                opacity: 0.5;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            background-image: linear-gradient(45deg,
+                    var(--color-primary-dark),
+                    var(--color-primary-light),
+                    var(--color-accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            letter-spacing: -1px;
+            position: relative;
+            animation: textReveal 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes textReveal {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h2 {
+            font-size: 1.8em;
+            color: var(--color-primary-dark);
+            margin-top: 0px;
+            margin-bottom: 50px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            animation: textReveal 1s ease-out 0.7s forwards;
+        }
+
+        p {
+            font-size: 1.25em;
+            margin-bottom: 50px;
+            line-height: 1.8;
+            color: var(--color-text-dark);
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: textReveal 1s ease-out 0.9s forwards;
+        }
+
+        .country-selection {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            animation: buttonsFadeIn 1s ease-out 1.2s forwards;
+            opacity: 0;
+        }
+
+        @keyframes buttonsFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .country-selection a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--color-bg-white);
+            color: var(--color-primary-dark);
+            padding: 18px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.15em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--color-border);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .country-selection a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg,
+                    var(--color-primary-light),
+                    var(--color-accent));
+            transition: all 0.4s ease;
+            z-index: -1;
+        }
+
+        .country-selection a:hover::before {
+            left: 0;
+        }
+
+        .country-selection a:hover {
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            border-color: transparent;
+        }
+
+        .country-selection a:hover .flag-emoji {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .flag-emoji {
+            font-size: 2.2em;
+            margin-right: 15px;
+            line-height: 1;
+            transition: transform 0.3s ease;
+        }
+
+        /* Medias queries para dispositivos móviles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+                width: 90%;
+            }
+
+            h1 {
+                font-size: 2.5em;
+                letter-spacing: 0;
+            }
+
+            h2 {
+                font-size: 1.4em;
+                margin-bottom: 35px;
+            }
+
+            p {
+                font-size: 1.05em;
+                margin-bottom: 35px;
+            }
+
+            .country-selection {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .country-selection a {
+                padding: 16px 20px;
+                font-size: 1.05em;
+                min-width: unset;
+            }
+
+            .flag-emoji {
+                font-size: 1.8em;
+                margin-right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Partículas/burbujas para el fondo animado -->
+    <div class="particles" id="particles"></div>
+
+    <div id="preloader">
+        <div class="spinner"></div>
+        <div id="loading-text">Cargando</div>
+        <div id="loading-region">Detectando tu región...</div>
+        <div id="loading-icon-display"></div>
+    </div>
+
+    <div class="container" id="main-content">
+        <h1>Vacano Store</h1>
+        <h2>Tu Tienda Online</h2>
+        <p>Experimenta la moda sin límites. Selecciona tu país para explorar nuestro catálogo exclusivo y ofertas
+            adaptadas a tu región.</p>
+        <div class="country-selection">
+            <a href="inicio.html"><span class="flag-emoji">🇻🇪</span>Venezuela</a>
+        </div>
+    </div>
+
+    <script>
+        // Generador de partículas para el fondo
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+
+                // Tamaño aleatorio entre 5px y 20px
+                const size = Math.random() * 15 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+
+                // Posición inicial aleatoria
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100 + 100}%`;
+
+                // Opacidad aleatoria
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+
+                // Duración de animación aleatoria entre 10s y 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+
+                // Retraso inicial aleatorio
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createParticles();
+
+            const preloader = document.getElementById('preloader');
+            const loadingText = document.getElementById('loading-text');
+            const loadingRegion = document.getElementById('loading-region');
+            const loadingIconDisplay = document.getElementById('loading-icon-display');
+            const mainContent = document.getElementById('main-content');
+
+            // Mapeo de códigos de país a URLs
+            const countryRedirects = {
+                'VEN': { url: 'venezuela/inicio.html', name: 'Venezuela', emoji: '🇻🇪' },
+            };
+
+            // Redirección por defecto
+            const defaultRedirect = {
+                url: 'inicio.html',
+                name: 'Venezuela (por defecto)',
+                emoji: '🇻🇪'
+            };
+
+            function hidePreloader() {
+                preloader.style.opacity = '0';
+                setTimeout(() => {
+                    preloader.style.display = 'none';
+                    mainContent.style.display = 'block';
+                    document.body.style.overflow = '';
+                }, 700);
+            }
+
+            async function getUserGeolocationCountry() {
+                return new Promise(resolve => {
+                    if (!navigator.geolocation) {
+                        console.warn('Geolocalización no soportada por este navegador.');
+                        return resolve(null);
+                    }
+
+                    navigator.geolocation.getCurrentPosition(
+                        async (position) => {
+                            const lat = position.coords.latitude;
+                            const lon = position.coords.longitude;
+                            console.log(`Ubicación obtenida: Lat ${lat}, Lon ${lon}`);
+
+                            try {
+                                const nominatimUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`;
+                                const response = await fetch(nominatimUrl);
+                                const data = await response.json();
+
+                                if (data && data.address && data.address.country_code) {
+                                    return resolve(data.address.country_code.toUpperCase());
+                                }
+                                console.warn('No se pudo obtener el código de país de Nominatim.');
+                                resolve(null);
+                            } catch (error) {
+                                console.error('Error al obtener el país de Nominatim:', error);
+                                resolve(null);
+                            }
+                        },
+                        (error) => {
+                            console.error('Error de geolocalización:', error.message);
+                            if (error.code === error.PERMISSION_DENIED) {
+                                console.warn('El usuario denegó el permiso de geolocalización.');
+                                loadingText.textContent = 'Permiso denegado.';
+                                loadingRegion.textContent = 'Redirigiendo a la tienda por defecto...';
+                                loadingIconDisplay.textContent = '🚫';
+                            } else {
+                                loadingText.textContent = 'Error al detectar.';
+                                loadingRegion.textContent = 'Redirigiendo a la tienda por defecto...';
+                                loadingIconDisplay.textContent = '⚠️';
+                            }
+                            resolve(null);
+                        },
+                        {
+                            enableHighAccuracy: false,
+                            timeout: 5000,
+                            maximumAge: 0
+                        }
+                    );
+                });
+            }
+
+            async function handleRedirection() {
+                loadingText.textContent = 'Cargando';
+                loadingRegion.textContent = 'Pidiendo permiso de ubicación...';
+                loadingIconDisplay.textContent = '📍';
+
+                const countryCode2Letter = await getUserGeolocationCountry();
+                console.log('Código de país detectado (2 letras):', countryCode2Letter);
+
+                let target = null;
+                let finalCountryCode = null;
+
+                if (countryCode2Letter === 'VE') {
+                    finalCountryCode = 'VEN';
+                }
+
+                if (finalCountryCode && countryRedirects[finalCountryCode]) {
+                    target = countryRedirects[finalCountryCode];
+                } else {
+                    target = defaultRedirect;
+                }
+
+                loadingText.textContent = 'Cargando...';
+                loadingRegion.textContent = `Redirigiendo a ${target.name}...`;
+                loadingIconDisplay.textContent = target.emoji;
+
+                setTimeout(() => {
+                    window.location.href = target.url;
+                }, 4000);
+            }
+
+            handleRedirection();
+        });
+    </script>
+</body>
+
+</html>
