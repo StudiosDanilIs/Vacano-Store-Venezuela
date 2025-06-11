@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próxima Apertura | Vacano Store</title>
+    <title>Vacano Store | Próxima Apertura</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Raleway:wght@800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,7 +22,7 @@
             background: linear-gradient(135deg, #0c2461, #1e3799, #4a69bd, #6a89cc);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
-            overflow: hidden;
+            overflow-x: hidden;
             color: white;
             text-align: center;
             padding: 20px;
@@ -46,16 +47,17 @@
         }
         
         .container {
-            max-width: 900px;
-            background: rgba(10, 20, 50, 0.7);
-            backdrop-filter: blur(12px);
-            border-radius: 25px;
-            padding: 50px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 1200px;
+            background: rgba(10, 20, 50, 0.75);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
             position: relative;
             overflow: hidden;
             z-index: 10;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
         
         .container::before {
@@ -65,24 +67,26 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0) 70%);
             z-index: -1;
         }
         
         .logo {
-            margin-bottom: 30px;
+            margin-bottom: 40px;
+            position: relative;
         }
         
         .logo h1 {
-            font-size: 3.8rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 4.5rem;
             font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 10px;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
             background: linear-gradient(to right, #ffffff, #a8d8ff, #74ebd5);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 20px rgba(168, 216, 255, 0.4);
+            text-shadow: 0 0 25px rgba(168, 216, 255, 0.4);
             position: relative;
             display: inline-block;
         }
@@ -90,44 +94,58 @@
         .logo h1::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
+            width: 200px;
+            height: 5px;
             background: linear-gradient(to right, #3498db, #1abc9c);
-            border-radius: 2px;
+            border-radius: 3px;
+        }
+        
+        .logo h1 span {
+            font-size: 1.5rem;
+            display: block;
+            margin-top: 10px;
+            letter-spacing: 4px;
+            font-weight: 300;
         }
         
         .subtitle {
-            font-size: 1.9rem;
-            margin-bottom: 40px;
+            font-size: 2.1rem;
+            margin-bottom: 50px;
             font-weight: 300;
-            line-height: 1.4;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            line-height: 1.5;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .countdown-container {
             display: flex;
             justify-content: center;
-            gap: 25px;
-            margin: 50px 0;
+            gap: 30px;
+            margin: 60px 0;
             flex-wrap: wrap;
         }
         
         .countdown-box {
-            background: rgba(0, 30, 60, 0.8);
-            border-radius: 15px;
-            padding: 30px 20px;
-            min-width: 140px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+            background: rgba(0, 30, 60, 0.85);
+            border-radius: 20px;
+            padding: 35px 25px;
+            min-width: 160px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
             position: relative;
             overflow: hidden;
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            border: 1px solid rgba(52, 152, 219, 0.3);
         }
         
         .countdown-box:hover {
-            transform: translateY(-10px);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            background: rgba(0, 40, 80, 0.9);
         }
         
         .countdown-box::before {
@@ -136,73 +154,97 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
+            height: 6px;
             background: linear-gradient(to right, #3498db, #1abc9c);
         }
         
         .countdown-value {
-            font-size: 4rem;
+            font-size: 4.5rem;
             font-weight: 700;
-            margin: 10px 0;
-            text-shadow: 0 0 15px rgba(52, 152, 219, 0.8);
+            margin: 15px 0;
+            text-shadow: 0 0 20px rgba(52, 152, 219, 0.9);
             font-family: 'Orbitron', sans-serif;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            background: linear-gradient(to bottom, #ffffff, #a8d8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .countdown-label {
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: #a8d8ff;
             font-weight: 400;
         }
         
         .message {
-            font-size: 1.6rem;
-            margin-top: 50px;
-            line-height: 1.7;
+            font-size: 1.8rem;
+            margin-top: 60px;
+            line-height: 1.8;
             background: linear-gradient(45deg, rgba(0, 20, 40, 0.7), rgba(0, 40, 80, 0.7));
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #3498db;
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 6px solid #3498db;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4);
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         
         .social-container {
-            margin-top: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 5;
         }
         
         .social-title {
-            font-size: 1.4rem;
-            margin-bottom: 25px;
+            font-size: 1.6rem;
+            margin-bottom: 35px;
             font-weight: 400;
             color: #a8d8ff;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .social-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #3498db, #1abc9c, transparent);
         }
         
         .social-icons {
             display: flex;
             justify-content: center;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
         }
         
         .social-icon {
-            width: 70px;
-            height: 70px;
+            width: 85px;
+            height: 85px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.12);
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 30px;
-            transition: all 0.4s ease;
+            font-size: 36px;
+            transition: all 0.5s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
             border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
         
         .social-icon::before {
@@ -212,7 +254,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: 0.5s;
         }
         
@@ -221,89 +263,242 @@
         }
         
         .social-icon:hover {
-            transform: translateY(-10px) scale(1.1);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            transform: translateY(-15px) scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
         }
         
-        .social-icon.facebook { background: rgba(59, 89, 152, 0.2); }
-        .social-icon.instagram { background: rgba(225, 48, 108, 0.2); }
-        .social-icon.github { background: rgba(0, 0, 0, 0.3); }
+        .social-icon i {
+            transition: transform 0.3s ease;
+        }
         
-        .social-icon.facebook:hover { background: rgba(59, 89, 152, 0.4); }
-        .social-icon.instagram:hover { background: rgba(225, 48, 108, 0.4); }
-        .social-icon.github:hover { background: rgba(0, 0, 0, 0.5); }
+        .social-icon:hover i {
+            transform: scale(1.2);
+        }
+        
+        .social-icon.facebook { 
+            background: linear-gradient(135deg, rgba(59, 89, 152, 0.25), rgba(59, 89, 152, 0.4)); 
+        }
+        .social-icon.instagram { 
+            background: linear-gradient(135deg, rgba(225, 48, 108, 0.25), rgba(225, 48, 108, 0.4)); 
+        }
+        .social-icon.github { 
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.35), rgba(40, 40, 40, 0.5)); 
+        }
+        
+        .social-icon.facebook:hover { background: linear-gradient(135deg, rgba(59, 89, 152, 0.4), rgba(59, 89, 152, 0.6)); }
+        .social-icon.instagram:hover { background: linear-gradient(135deg, rgba(225, 48, 108, 0.4), rgba(225, 48, 108, 0.6)); }
+        .social-icon.github:hover { background: linear-gradient(135deg, rgba(0, 0, 0, 0.5), rgba(60, 60, 60, 0.7)); }
         
         .footer {
-            margin-top: 40px;
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.7);
+            margin-top: 60px;
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.75);
             font-weight: 300;
+            position: relative;
+            padding-top: 20px;
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
         }
         
         .footer a {
             color: #74ebd5;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-weight: 500;
+            position: relative;
         }
         
         .footer a:hover {
             color: #3498db;
-            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(52, 152, 219, 0.7);
         }
         
-        .confetti {
+        .footer a::after {
+            content: '';
             position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: #f0f;
-            animation: fall linear forwards;
-            z-index: -1;
-            border-radius: 50%;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #3498db;
+            transition: width 0.3s;
         }
         
-        @keyframes fall {
-            to { 
-                transform: translateY(100vh) rotate(720deg); 
-                opacity: 0;
-            }
+        .footer a:hover::after {
+            width: 100%;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
         }
         
         /* Estilos para móviles */
-        @media (max-width: 768px) {
+        @media (max-width: 992px) {
             .container {
-                padding: 30px 20px;
+                padding: 50px 30px;
             }
             
             .logo h1 {
-                font-size: 2.8rem;
+                font-size: 3.5rem;
             }
             
             .subtitle {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
             
             .countdown-box {
-                min-width: 100px;
-                padding: 20px 10px;
+                min-width: 130px;
+                padding: 30px 20px;
             }
             
             .countdown-value {
-                font-size: 2.8rem;
-            }
-            
-            .countdown-label {
-                font-size: 1rem;
+                font-size: 3.8rem;
             }
             
             .message {
-                font-size: 1.3rem;
+                font-size: 1.6rem;
+                padding: 30px;
+            }
+            
+            .social-icon {
+                width: 75px;
+                height: 75px;
+                font-size: 32px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+            
+            .logo h1 {
+                font-size: 3rem;
+            }
+            
+            .logo h1::after {
+                width: 150px;
+            }
+            
+            .subtitle {
+                font-size: 1.6rem;
+                margin-bottom: 40px;
+            }
+            
+            .countdown-container {
+                gap: 20px;
+                margin: 50px 0;
+            }
+            
+            .countdown-box {
+                min-width: 110px;
+                padding: 25px 15px;
+            }
+            
+            .countdown-value {
+                font-size: 3.2rem;
+            }
+            
+            .countdown-label {
+                font-size: 1.1rem;
+            }
+            
+            .message {
+                font-size: 1.4rem;
+                padding: 25px;
+                margin-top: 50px;
+            }
+            
+            .social-icon {
+                width: 70px;
+                height: 70px;
+                font-size: 28px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .container {
+                padding: 30px 20px;
+                border-radius: 25px;
+            }
+            
+            .logo h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .countdown-container {
+                gap: 15px;
+            }
+            
+            .countdown-box {
+                min-width: 85px;
+                padding: 20px 10px;
+                border-radius: 15px;
+            }
+            
+            .countdown-value {
+                font-size: 2.5rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.9rem;
+                letter-spacing: 2px;
+            }
+            
+            .message {
+                font-size: 1.2rem;
                 padding: 20px;
+                margin-top: 40px;
+            }
+            
+            .social-icons {
+                gap: 25px;
             }
             
             .social-icon {
                 width: 60px;
                 height: 60px;
-                font-size: 25px;
+                font-size: 24px;
+            }
+            
+            .social-title {
+                font-size: 1.4rem;
+            }
+            
+            .footer {
+                font-size: 1rem;
             }
         }
         
@@ -313,7 +508,7 @@
             }
             
             .subtitle {
-                font-size: 1.3rem;
+                font-size: 1.2rem;
             }
             
             .countdown-container {
@@ -321,16 +516,12 @@
             }
             
             .countdown-box {
-                min-width: 80px;
-                padding: 15px 5px;
+                min-width: 70px;
+                padding: 15px 8px;
             }
             
             .countdown-value {
                 font-size: 2rem;
-            }
-            
-            .countdown-label {
-                font-size: 0.8rem;
             }
             
             .message {
@@ -338,20 +529,23 @@
             }
             
             .social-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 20px;
+                width: 55px;
+                height: 55px;
             }
         }
     </style>
 </head>
 <body>
+    <div class="floating-elements">
+        <!-- Floating elements will be generated by JavaScript -->
+    </div>
+    
     <div class="container">
         <div class="logo">
-            <h1>VACANO STORE</h1>
+            <h1>VACANO STORE<span>PRÓXIMA APERTURA</span></h1>
         </div>
         
-        <p class="subtitle">¡Estamos preparando una experiencia increíble para ti!</p>
+        <p class="subtitle">¡Estamos preparando una experiencia única e inolvidable para ti!</p>
         
         <div class="countdown-container">
             <div class="countdown-box">
@@ -369,12 +563,11 @@
         </div>
         
         <p class="message">
-            Estamos trabajando arduamente para abrir nuestras puertas al público con los mejores productos.<br>
-            ¡Prepárate para una experiencia única que superará todas tus expectativas!
+            En Vacano Store estamos trabajando arduamente para ofrecerte productos de la más alta calidad con un servicio excepcional. <br>¡Muy pronto abriremos nuestras puertas para brindarte una experiencia de compra que superará todas tus expectativas!
         </p>
         
         <div class="social-container">
-            <div class="social-title">Síguenos para más novedades</div>
+            <div class="social-title">Conéctate con nosotros</div>
             <div class="social-icons">
                 <a href="https://www.facebook.com/alejandro.alviarez.611335" target="_blank" class="social-icon facebook">
                     <i class="fab fa-facebook-f"></i>
@@ -389,7 +582,7 @@
         </div>
         
         <div class="footer">
-            Desarrollado por <a href="https://github.com/StudiosDanilIs" target="_blank">Studios Daniels</a> &copy; 2023
+            Desarrollado con ❤️ por <a href="https://github.com/StudiosDanilIs" target="_blank">Studios Daniels</a> &copy; 2023
         </div>
     </div>
     
@@ -404,6 +597,31 @@
             const targetDate = new Date();
             targetDate.setHours(24, 0, 0, 0); // Medianoche del día actual
             
+            // Crear elementos flotantes
+            const floatingContainer = document.querySelector('.floating-elements');
+            const colors = ['rgba(255,255,255,0.1)', 'rgba(168,216,255,0.15)', 'rgba(116,235,213,0.15)'];
+            
+            for (let i = 0; i < 20; i++) {
+                const size = Math.random() * 100 + 50;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                const duration = Math.random() * 20 + 15;
+                const delay = Math.random() * 5;
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                
+                const floatingElement = document.createElement('div');
+                floatingElement.className = 'floating';
+                floatingElement.style.width = `${size}px`;
+                floatingElement.style.height = `${size}px`;
+                floatingElement.style.left = `${posX}%`;
+                floatingElement.style.top = `${posY}%`;
+                floatingElement.style.background = color;
+                floatingElement.style.animationDuration = `${duration}s`;
+                floatingElement.style.animationDelay = `${delay}s`;
+                
+                floatingContainer.appendChild(floatingElement);
+            }
+            
             function updateCountdown() {
                 const now = new Date();
                 const timeDifference = targetDate - now;
@@ -417,9 +635,6 @@
                     // Mostrar mensaje de apertura
                     document.querySelector('.subtitle').textContent = "¡Hemos abierto nuestras puertas!";
                     document.querySelector('.message').innerHTML = "Bienvenido a Vacano Store.<br>¡Gracias por tu paciencia y espera!";
-                    
-                    // Crear confeti
-                    createConfetti();
                     return;
                 }
                 
@@ -435,40 +650,6 @@
                 
                 // Continuar actualizando cada segundo
                 setTimeout(updateCountdown, 1000);
-            }
-            
-            // Función para crear confeti
-            function createConfetti() {
-                const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff9900', '#33ccff'];
-                const container = document.querySelector('.container');
-                
-                for (let i = 0; i < 200; i++) {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    
-                    // Posición aleatoria
-                    confetti.style.left = `${Math.random() * 100}%`;
-                    confetti.style.top = `-20px`;
-                    
-                    // Tamaño aleatorio
-                    const size = Math.random() * 15 + 5;
-                    confetti.style.width = `${size}px`;
-                    confetti.style.height = `${size}px`;
-                    
-                    // Color aleatorio
-                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                    
-                    // Animación aleatoria
-                    confetti.style.animationDuration = `${Math.random() * 3 + 2}s`;
-                    confetti.style.animationDelay = `${Math.random() * 2}s`;
-                    
-                    document.body.appendChild(confetti);
-                    
-                    // Eliminar confeti después de la animación
-                    setTimeout(() => {
-                        confetti.remove();
-                    }, 5000);
-                }
             }
             
             // Iniciar el cronómetro
